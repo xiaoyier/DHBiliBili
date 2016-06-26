@@ -1,0 +1,347 @@
+
+
+#ifndef BiliBili_pch
+#define BiliBili_pch
+
+//----------------------OC----------------------------
+// 每一个OC文件都会定义这个宏__OBJC__
+#ifdef __OBJC__
+
+
+//----------------------分类文件----------------------------
+#pragma mark - category
+#import "UIView+Frame.h"
+#import "UIImage+image.h"
+#import "UIImage+FileImage.h"
+#import "CALayer+layer.h"
+#import "UIView+MaskCorner.h"
+#import "UIColor+Category.h"
+//----------------------分类文件----------------------------
+
+
+
+
+//----------------------公用宏----------------------------
+#pragma mark - publicMacro
+//自动提示宏
+#define keyPath(objc,keyPath) @(((void)objc.keyPath, #keyPath))
+//----------------------公用宏----------------------------
+
+
+
+//----------------------角度弧度----------------------------
+#pragma mark degrees/radian functions 
+//角度->弧度
+#define degreesToRadian(x) (M_PI * (x) / 180.0)
+//弧度->角度
+#define radianToDegrees(radian) (radian*180.0)/(M_PI)
+//----------------------角度弧度----------------------------
+
+
+
+//----------------------常用尺寸----------------------------
+#pragma mark size
+//主屏宽
+#define XDHScreenW ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+//主屏高
+#define XDHScreenH ([UIScreen mainScreen].bounds.size.height)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+// UIConstants provides contants variables for UI control.
+//滚动条高度
+#define NavigationBarH                   44
+//标签栏
+#define TABBAR_HEIGHT                    49
+#define STATUSBAR_HEIGHT                 20
+//文本框
+#define LABELWIDTH                       200
+#define LABELHEIGHT                      15
+#define LABEL_FONT_SIZE                  12
+#define LABEL_FONT               [UIFont systemFontOfSize:UI_LABEL_FONT_SIZE]
+//----------------------常用尺寸----------------------------
+
+
+//----------------------字体相关----------------------------
+#define kFont_10 [UIFont systemFontOfSize: 10]
+#define kFont_12 [UIFont systemFontOfSize: 12]
+#define kFont_13 [UIFont systemFontOfSize: 13]
+#define kFont_14 [UIFont systemFontOfSize: 14]
+#define kFont_15 [UIFont systemFontOfSize: 15]
+#define kFont_17 [UIFont systemFontOfSize: 17]
+#define kFont_20 [UIFont systemFontOfSize: 20]
+//----------------------字体相关----------------------------
+
+
+//----------------------图片----------------------------
+#pragma mark picture
+//读取本地图片
+//#define LOADIMAGE(file,ext) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:ext]]
+
+//定义UIImage对象
+#define IMAGE(A) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:A ofType:nil]]
+
+//定义UIImage对象
+#define ImageNamed(name) [UIImage imageNamed:name]
+
+//建议使用前两种宏定义,性能高于后者
+//----------------------图片----------------------------
+
+
+
+//----------------------颜色类---------------------------
+#define kPinkColor UICOLOR(@"#EA7B9A")
+#define kTextGrayColor UICOLOR(@"#969696")
+
+#pragma mark color functions
+// 获取RGB颜色
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+//带有RGBA的颜色设置
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+//背景色
+#define BACKGROUND_COLOR [UIColor colorWithRed:242.0/255.0 green:236.0/255.0 blue:231.0/255.0 alpha:1.0]
+//清除背景色
+#define CLEARCOLOR [UIColor clearColor]
+// rgb颜色转换（16进制->10进制）
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+//粉红色
+#define HPColorPink [UIColor colorWithRed:212 * 1.0 / 255  green:71  * 1.0 / 255 blue:114  * 1.0 / 255 alpha:1.0]
+//灰色
+#define HPColorGrey [UIColor colorWithRed:135.0 / 255 green:135.0 / 255 blue:135.0 / 255 alpha:1.0]
+#define UICOLOR(A)  [UIColor colorWithHexString:A]
+//----------------------颜色类---------------------------
+
+
+
+//----------------------系统----------------------------
+#if 0
+#pragma mark system
+//获取系统版本
+#define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
+#define CurrentSystemVersion [[UIDevice currentDevice] systemVersion]
+
+//获取当前语言
+#define CurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
+
+//判断是否 Retina屏、设备是否是iPad、是否iPhone5、iPhone6、iPhone6plus
+//Retina屏
+#define isRetina ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+//iPad
+#define isPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//iPhone5
+#define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568)
+//#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+//iPhone6
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size)) : NO)
+//iPhone6plus
+#define iPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size)) : NO)
+
+//判断系统的版本号
+#define iOS9  ([[UIDevice currentDevice].systemVersion floatValue] >= 9.0)
+#define iOS8  ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0)
+#define iOS7  ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0)
+#define iOS6  ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
+#define iOS5  ([[UIDevice currentDevice].systemVersion floatValue] >= 5.0)
+
+//判断是真机还是模拟器
+#if TARGET_OS_IPHONE
+//iPhone Device
+#endif
+
+#if TARGET_IPHONE_SIMULATOR
+//iPhone Simulator
+#endif
+
+//检查系统版本
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+/*
+ Usage sample:
+ 
+ if (SYSTEM_VERSION_LESS_THAN(@"4.0")) {
+ ...
+ }
+ 
+ if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"3.1.1")) {
+ ...
+ }
+ 
+ */
+#endif
+//----------------------系统----------------------------
+
+
+
+
+//----------------------内存----------------------------
+
+
+
+//----------------------DEBUG---------------------------
+#pragma mark - DEBUG
+// 程序在调试阶段的时候才需要打印
+#ifdef DEBUG  // 调试阶段
+// ...表示宏里面的可变参数
+// __VA_ARGS__函数里面可变参数
+#define debugLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#define debug(...)    NSLog(@"%s", __func__, __VA_ARGS__)
+#else // 发布阶段
+#define debugLog(...)
+#define debugMethod()
+#define debug(...)
+#endif
+//----------------------DEBUG---------------------------
+
+
+
+//-------------------打印日志-------------------------
+#if 0
+//DEBUG  模式下打印日志,当前行
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
+
+//重写NSLog,Debug模式下打印日志和当前行数
+#if DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"\nfunction:%s line:%d content:%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(FORMAT, ...) nil
+#endif
+
+//DEBUG  模式下打印日志,当前行 并弹出一个警告
+#ifdef DEBUG
+#define ULog(fmt, ...)  { UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%s\n [Line %d] ", __PRETTY_FUNCTION__, __LINE__] message:[NSString stringWithFormat:fmt, ##__VA_ARGS__]  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil]; [alert show]; }
+#else
+#define ULog(...)
+#endif
+
+
+#define ITTDEBUG
+#define ITTLOGLEVEL_INFO     10
+#define ITTLOGLEVEL_WARNING  3
+#define ITTLOGLEVEL_ERROR    1
+
+#ifndef ITTMAXLOGLEVEL
+
+#ifdef DEBUG
+#define ITTMAXLOGLEVEL ITTLOGLEVEL_INFO
+#else
+#define ITTMAXLOGLEVEL ITTLOGLEVEL_ERROR
+#endif
+
+#endif
+
+// The general purpose logger. This ignores logging levels.
+#ifdef ITTDEBUG
+#define ITTDPRINT(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define ITTDPRINT(xx, ...)  ((void)0)
+#endif
+
+// Prints the current method's name.
+#define ITTDPRINTMETHODNAME() ITTDPRINT(@"%s", __PRETTY_FUNCTION__)
+
+// Log-level based logging macros.
+#if ITTLOGLEVEL_ERROR <= ITTMAXLOGLEVEL
+#define ITTDERROR(xx, ...)  ITTDPRINT(xx, ##__VA_ARGS__)
+#else
+#define ITTDERROR(xx, ...)  ((void)0)
+#endif
+
+#if ITTLOGLEVEL_WARNING <= ITTMAXLOGLEVEL
+#define ITTDWARNING(xx, ...)  ITTDPRINT(xx, ##__VA_ARGS__)
+#else
+#define ITTDWARNING(xx, ...)  ((void)0)
+#endif
+
+#if ITTLOGLEVEL_INFO <= ITTMAXLOGLEVEL
+#define ITTDINFO(xx, ...)  ITTDPRINT(xx, ##__VA_ARGS__)
+#else
+#define ITTDINFO(xx, ...)  ((void)0)
+#endif
+
+#ifdef ITTDEBUG
+#define ITTDCONDITIONLOG(condition, xx, ...) { if ((condition)) { \
+ITTDPRINT(xx, ##__VA_ARGS__); \
+} \
+} ((void)0)
+#else
+#define ITTDCONDITIONLOG(condition, xx, ...) ((void)0)
+#endif
+
+#define ITTAssert(condition, ...)                                       \
+do {                                                                      \
+if (!(condition)) {                                                     \
+[[NSAssertionHandler currentHandler]                                  \
+handleFailureInFunction:[NSString stringWithUTF8String:__PRETTY_FUNCTION__] \
+file:[NSString stringWithUTF8String:__FILE__]  \
+lineNumber:__LINE__                                  \
+description:__VA_ARGS__];                             \
+}                                                                       \
+} while(0)
+#endif
+//---------------------打印日志--------------------------
+
+
+
+//----------------------其他---------------------------
+#pragma mark other
+
+
+
+//沙盒位置
+#define PATH_OF_APP_HOME    NSHomeDirectory()
+#define PATH_OF_TEMP        NSTemporaryDirectory()
+#define PATH_OF_DOCUMENT    [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
+//tabBar跳转block
+typedef void(^tabBarBlock)(NSInteger selectedIndex); 
+
+
+//NSUserDefaults 实例化
+#define USER_DEFAULT [NSUserDefaults standardUserDefaults]
+
+
+//G－C－D
+//异步函数+全局队列
+#define BACK(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+//异步函数+主队列
+#define MAIN(block) dispatch_async(dispatch_get_main_queue(),block)
+
+
+//程序的本地化,引用国际化的文件
+#define STR(key)            NSLocalizedString(key, nil)
+#define MyLocal(x, ...) NSLocalizedString(x, nil)
+
+//点与像素的比例
+#define SCALE   ([UIScreen mainScreen].scale)
+
+
+//主窗口
+#define KEYWINDOW ([UIApplication sharedApplication].keyWindow)
+
+//方正黑体简体字体定义
+#define FONT(F) [UIFont fontWithName:@"FZHTJW--GB1-0" size:F]
+
+
+//定义一个API
+#define APIURL                @"http://xxxxx/"
+//登陆API
+#define APILogin              [APIURL stringByAppendingString:@"Login"]
+
+
+#endif /* OC使用 */
+//----------------------OC----------------------------
+
+
+
+#endif /* BiliBili_pch */
+

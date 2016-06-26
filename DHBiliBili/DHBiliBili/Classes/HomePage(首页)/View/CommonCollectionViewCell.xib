@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="commonCell" id="gTV-IL-0wX" customClass="CommonCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="170" height="120"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EpX-jJ-v3H">
+                        <rect key="frame" x="0.0" y="0.0" width="170" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="KdU-eA-ZKW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黑色残骸" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9w-Cj-URe">
+                        <rect key="frame" x="0.0" y="80" width="170" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="EpX-jJ-v3H" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="2px-Ql-Pez"/>
+                <constraint firstAttribute="bottom" secondItem="W9w-Cj-URe" secondAttribute="bottom" id="3cK-vt-rDg"/>
+                <constraint firstAttribute="trailing" secondItem="EpX-jJ-v3H" secondAttribute="trailing" id="BsE-RT-cWH"/>
+                <constraint firstItem="EpX-jJ-v3H" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="N1U-Ve-cF7"/>
+                <constraint firstItem="W9w-Cj-URe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NzB-1f-J0J"/>
+                <constraint firstAttribute="trailing" secondItem="W9w-Cj-URe" secondAttribute="trailing" id="Z9K-Qy-FU7"/>
+                <constraint firstItem="W9w-Cj-URe" firstAttribute="top" secondItem="EpX-jJ-v3H" secondAttribute="bottom" id="jSm-v3-KhR"/>
+            </constraints>
+            <size key="customSize" width="360" height="67"/>
+            <connections>
+                <outlet property="imageV" destination="EpX-jJ-v3H" id="H8u-Wx-UBt"/>
+                <outlet property="titleL" destination="W9w-Cj-URe" id="lfy-6w-271"/>
+            </connections>
+            <point key="canvasLocation" x="221" y="292"/>
+        </collectionViewCell>
+    </objects>
+</document>
